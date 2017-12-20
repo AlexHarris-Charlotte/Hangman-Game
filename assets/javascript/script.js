@@ -25,45 +25,39 @@ var questionsAndAnswers = [
     ["What number was Michael Jordan Drafted?", "two"],
     ["Who won the NBA Championship in 2008", "celtics"]
 ]
-var randomArrayIndex = questionsAndAnswers[Math.floor(Math.random() * 5)];
-var answer = randomArrayIndex[1].toLowerCase();
+var randomArrayIndex;
+var answer;
 var answerString;
 var answerArray = [];
-var questionText = document.getElementById("question").innerHTML = randomArrayIndex[0] + "\n Number of Inputs: " + answer.length;
-// var userInputString = userInputArray.toString().replace(/,/g, "");
+var answerInput;
+answerInput = answerArray.join("");
 
 
 
-
-questionText;
+getRandomQuestion();
 underscores();
 document.addEventListener("keypress", function() {
-    userInput = event.key;
-    getRandomQuestion();
+    storeUserInput();
     inputConditions();
+    reset();
+    })
 
 
 
-})
 
-
-
-// Record user input and store it to an array
 function storeUserInput() {
     userInput = event.key;
     userInputArray.push(userInput);
     console.log(userInput);
 }
 
-// create a random number gen to get a random nested array
 function getRandomQuestion() {
-    randomArrayIndex = questionsAndAnswers[Math.floor(Math.random() * 5)];
-    if(guessesLeft === 0) {
-        document.getElementById("question").innerHTML = randomArrayIndex[0];     
-    }
+    randomArrayIndex = questionsAndAnswers[Math.floor(Math.random() * questionsAndAnswers.length)];
+    answer = randomArrayIndex[1].toLowerCase();
+    var questionText;
+    var questionText = document.getElementById("question").innerHTML = randomArrayIndex[0] + "\n Number of Inputs: " + answer.length;
 }
 
-// Creates underscores based on the answer length
 function underscores(){
     for(var i = 0; i < answer.length; i++) {
         answerArray[i] = "_";
@@ -72,7 +66,6 @@ function underscores(){
     document.getElementById("answer").innerHTML = answerString;
 }
 
-// Creates logic on if the user input is within the answer or not
 function inputConditions() {
     if(answer.includes(userInput)){
         for(var i = 0; i < answer.length; i++) {
@@ -81,7 +74,7 @@ function inputConditions() {
             }
         }
         document.getElementById("answer").innerHTML = answerArray.join(" ");
-    } else {
+    } else if(guessesArray.indexOf(userInput) == -1) {
         guessesLeft--;
         document.getElementById("guesses-left").innerHTML = guessesLeft;
         guessesArray.push(userInput);
@@ -89,3 +82,21 @@ function inputConditions() {
         document.getElementById("guesses").innerHTML = guessesString;
     }
 }
+
+function reset(){
+    if(answerArray.join("") == answer) {
+        console.log("apples");
+        getRandomQuestion();
+        answerArray = [];
+        underscores();
+        guessesArray = [];
+        guessesString = guessesArray.join(" ");
+        guessesLeft = 6;
+        document.getElementById("guesses-left").innerHTML = guessesLeft;
+        document.getElementById("guesses").innerHTML = guessesString;
+        console.log("bananas");
+    }
+}
+
+
+
