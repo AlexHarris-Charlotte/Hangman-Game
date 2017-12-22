@@ -25,9 +25,10 @@ var guessesLeft = 6;
 var questionsAndAnswers = [
     ["Year Lebron James was drafted?", "2003"],
     ["First player to average a triple double?", "OscarRobertson"],
-    ["Mascot name of the Charlotte Hornets?", "hugo"],
-    ["What number was Michael Jordan Drafted?", "two"],
-    ["Who won the NBA Championship in 2008", "celtics"]
+    ["Mascot name of the Charlotte Hornets?", "Hugo"],
+    ["What number was Michael Jordan Drafted?", "Two"],
+    ["Who won the NBA Championship in 2008", "Celtics"],
+    ["Doesn's actually have a PHD", "DrJ"]
 ]
 var randomArrayIndex;
 var answer;
@@ -93,6 +94,7 @@ function inputConditions() {
 function reset(){
     if(answerArray.join("") == answer) {
         gifGenerator();
+        document.getElementById("previous-answer").innerHTML = "Previous Answer: " + randomArrayIndex[1];
         getRandomQuestion();
         answerArray = [];
         underscores();
@@ -100,6 +102,8 @@ function reset(){
         winCount++;
         document.getElementById("win").innerHTML = winCount;
     } else if(guessesLeft === 0) {
+        document.getElementById("win-image").setAttribute("src","https://windycitizensports.files.wordpress.com/2012/04/lebron-crying.jpg?w=470")
+        document.getElementById("previous-answer").innerHTML = "YOU LOST! The Previous Answer was: " + randomArrayIndex[1];
         getRandomQuestion();
         answerArray = [];
         underscores();
@@ -139,6 +143,9 @@ function gifGenerator() {
             break;
         case "hugo":
         document.getElementById("win-image").setAttribute("src","https://media0.giphy.com/media/l0Iy8vkimrfQAUc6s/200.gif#5-grid1")
+            break;
+        case "drj":
+        document.getElementById("win-image").setAttribute("src","https://media2.giphy.com/media/phTVBiigthPCU/200.gif#16-grid1")
             break;
         default:
         document.getElementById("win-image").setAttribute("src","https://media.giphy.com/channel_assets/nba/lMqp6CIVv9Lc.GIF")
