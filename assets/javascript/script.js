@@ -44,7 +44,7 @@ var image;
 
 getRandomQuestion();
 underscores();
-document.addEventListener("keypress", function() {
+document.addEventListener("keypress", function(event) {
     storeUserInput();
     inputConditions();
     reset();
@@ -123,10 +123,7 @@ function viewReset() {
     document.getElementById("guesses").innerHTML = guessesString;
 }
 
-// this line manipulates the HTML image
-// document.getElementById("win-image").setAttribute("src", "");
-
-
+// Plays appropriate Gif based on the correct answer
 function gifGenerator() {
     switch(answer) {
         case "2003":
