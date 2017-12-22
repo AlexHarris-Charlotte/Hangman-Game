@@ -59,7 +59,7 @@ h1 {
 }
 
 #question {
-    margin-top: 400px;
+    margin-top: 250px;
 }
 
 #answer {
@@ -69,4 +69,6 @@ h1 {
 
 #win-image {
     max-width: 100%;
+    margin-top: 40px;
+    margin: 0 auto;
 }
